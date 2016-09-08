@@ -21,16 +21,16 @@ namespace Calculadora_Claudio_Manzanares
 
             if (numero2.GetNumero() != 0)
             {
-                switch (operador)
+                switch (this.validarOperador(operador))
                 {
                     case "+":
-                       return resultado = numero1+ numero2;
+                       return resultado = numero1 + numero2;
                     case "-":
-                        return resultado = numero1 - numero2;
+                       return resultado = numero1 - numero2;
                     case "*":
-                        return resultado = numero1 * numero2;
+                       return resultado = numero1 * numero2;
                     case "/":
-                        return resultado = numero1 / numero2;
+                       return resultado = numero1 / numero2;
                 }
             }
 
@@ -43,9 +43,9 @@ namespace Calculadora_Claudio_Manzanares
         /// <returns>Retorna la misma cadena si contiene un operador valido de lo contrario retorna +.</returns>
         public string validarOperador(string operador)
         {
-            if ((operador != "*") || (operador != "+") || (operador != "-") || (operador != "/"))
-                return operador;
-            return "+";
+            if ((operador != "*") && (operador != "+") && (operador != "-") && (operador != "/"))
+                return "+";
+            return operador;
         }
     }
 }

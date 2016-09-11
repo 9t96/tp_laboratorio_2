@@ -19,8 +19,6 @@ namespace Calculadora_Claudio_Manzanares
         {
             double resultado;
 
-            if (numero2.GetNumero() != 0)
-            {
                 switch (this.validarOperador(operador))
                 {
                     case "+":
@@ -30,10 +28,11 @@ namespace Calculadora_Claudio_Manzanares
                     case "*":
                        return resultado = numero1 * numero2;
                     case "/":
-                       return resultado = numero1 / numero2;
+                        if (numero2.GetNumero() == 0)
+                            return 0;
+                        return resultado = numero1 / numero2;
                 }
-            }
-
+            
             return 0;
         }
         /// <summary>

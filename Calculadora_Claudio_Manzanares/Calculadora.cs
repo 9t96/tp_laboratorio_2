@@ -15,11 +15,11 @@ namespace Calculadora_Claudio_Manzanares
         /// <param name="numero2">Segundo a numero a ser operado.</param>
         /// <param name="operador">Cadena que contiene al operador deseado.</param>
         /// <returns>Resultado de la operacion.</returns>
-        public double operar(Numero numero1, Numero numero2, string operador)
+        public static double operar(Numero numero1, Numero numero2, string operador)
         {
             double resultado;
 
-                switch (this.validarOperador(operador))
+                switch (Calculadora.validarOperador(operador))
                 {
                     case "+":
                        return resultado = numero1 + numero2;
@@ -40,7 +40,7 @@ namespace Calculadora_Claudio_Manzanares
         /// </summary>
         /// <param name="operador">Cadena que contiene operador a validar.</param>
         /// <returns>Retorna la misma cadena si contiene un operador valido de lo contrario retorna +.</returns>
-        public string validarOperador(string operador)
+        public static string validarOperador(string operador)
         {
             if ((operador != "*") && (operador != "+") && (operador != "-") && (operador != "/"))
                 return "+";

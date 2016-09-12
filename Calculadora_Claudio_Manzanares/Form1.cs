@@ -31,10 +31,8 @@ namespace Calculadora_Claudio_Manzanares
         {
             Numero numero1 = new Numero(txtNumero1.Text);
             Numero numero2 = new Numero(txtNumero2.Text);
-            Calculadora calcular = new Calculadora();
 
-            lblResultado.Text = calcular.operar(numero1, numero2, cmbBox1.Text).ToString();
-
+            lblResultado.Text = Calculadora.operar(numero1, numero2, cmbBox1.Text).ToString();
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)

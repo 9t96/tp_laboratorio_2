@@ -9,17 +9,26 @@ namespace Calculadora_Claudio_Manzanares
     public class Numero
     {
         private double _cantidad;
-
-        public Numero()
+        /// <summary>
+        /// Incializa numero en 0.
+        /// </summary>
+        public Numero() : this(0)
         {
-            this._cantidad = 0;
+
         }
 
+        /// <summary>
+        /// Recibe un numero y lo asigna.
+        /// </summary>
+        /// <param name="numero"></param>
         public Numero(double numero)
         {
             this._cantidad = numero;
         }
-        
+        /// <summary>
+        /// Recibe una cadena, trata de convertirla en double y la asigna.
+        /// </summary>
+        /// <param name="stringNumero"></param>
         public Numero(string stringNumero)
         {
 
@@ -43,14 +52,14 @@ namespace Calculadora_Claudio_Manzanares
         /// <param name="numero">Cadena a validar que contenga un numero.</param>
         private void SetNumber(string numero)
         {
-            this._cantidad = this.ValidarNumero(numero);
+            this._cantidad = Numero.ValidarNumero(numero);
         }
         /// <summary>
         /// Valida que la cadena contenga un numero.
         /// </summary>
         /// <param name="numeroString">Cadena a validar</param>
         /// <returns>0 si no es numero valido y un double con el numero si lo es</returns>
-        private double ValidarNumero(string numeroString)
+        private static double ValidarNumero(string numeroString)
         {
             double resultado;
             if (double.TryParse(numeroString, out resultado))

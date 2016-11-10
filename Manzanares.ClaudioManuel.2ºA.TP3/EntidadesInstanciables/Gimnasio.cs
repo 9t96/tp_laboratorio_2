@@ -33,6 +33,11 @@ namespace EntidadesInstanciables
         #endregion
 
         #region Propiedades
+        /// <summary>
+        /// Indexador de jornada.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>Jornada especificada.</returns>
         public Jornada this[int index]
         {
             get
@@ -43,7 +48,9 @@ namespace EntidadesInstanciables
                     return null;
             }
         }
-
+        /// <summary>
+        /// Propiedad get que permite serializar.
+        /// </summary>
         public List<Alumno> alumnos
         {
             get
@@ -52,7 +59,9 @@ namespace EntidadesInstanciables
             }
 
         }
-
+        /// <summary>
+        /// Propiedad get que permite serializar.
+        /// </summary>
         public List<Instructor> Instructores
         {
             get
@@ -61,7 +70,9 @@ namespace EntidadesInstanciables
             }
 
         }
-
+        /// <summary>
+        /// Propiedad get que permite serializar.
+        /// </summary>
         public List<Jornada> Jornada
         {
             get
@@ -73,12 +84,22 @@ namespace EntidadesInstanciables
 
         #region Sobrecargas.
 
-
+        /// <summary>
+        /// Un Gimnasio será igual a un Alumno si el mismo no está inscripto en él.
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="a"></param>
+        /// <returns></returns>
         public static bool operator !=(Gimnasio g, Alumno a)
         {
             return !(g == a);
         }
-
+        /// <summary>
+        /// Un Gimnasio será igual a un Alumno si el mismo está inscripto en él.
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="a"></param>
+        /// <returns></returns>
         public static bool operator ==(Gimnasio g, Alumno a)
         {
             if (!Object.ReferenceEquals(g, null) && !Object.ReferenceEquals(a, null))
@@ -93,7 +114,12 @@ namespace EntidadesInstanciables
             }
             return false;
         }
-
+        /// <summary>
+        /// retornará el primer Instructor que no pueda dar la clase.
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public static Instructor operator !=(Gimnasio g, EClases e)
         {
             Instructor noDaEsaClse = null;
@@ -106,7 +132,12 @@ namespace EntidadesInstanciables
 
             return noDaEsaClse;
         }
-
+        /// <summary>
+        ///  retornará el primer instructor capaz de dar esa clase.
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public static Instructor operator ==(Gimnasio g, EClases e)
         {
             if (!Object.ReferenceEquals(g, null))
@@ -121,12 +152,22 @@ namespace EntidadesInstanciables
             }
             throw new SinInstructorException();
         }
-
+        /// <summary>
+        /// Un Gimnasio será igual a un Instructor si el mismo no está dando clases en él.
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="i"></param>
+        /// <returns></returns>
         public static bool operator !=(Gimnasio g, Instructor i)
         {
             return !(g == i);
         }
-
+        /// <summary>
+        /// Un Gimnasio será igual a un Instructor si el mismo está dando clases en él.
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="i"></param>
+        /// <returns></returns>
         public static bool operator ==(Gimnasio g, Instructor i)
         {
             bool daClase = false;
@@ -140,7 +181,12 @@ namespace EntidadesInstanciables
             return daClase;
         }
 
-
+        /// <summary>
+        /// Agrega un alumno al gimnasio.
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="a"></param>
+        /// <returns></returns>
         public static  Gimnasio operator +(Gimnasio g, Alumno a)
         {
             if (!Object.ReferenceEquals(g, null) && !Object.ReferenceEquals(a, null))
@@ -158,7 +204,12 @@ namespace EntidadesInstanciables
                 throw new NullReferenceException();
             return g;
         }
-
+        /// <summary>
+        /// Crea una nueva jornada con la clas especificada, el primer profesor capaz de dictarla y la lista de alumnos que que participen de la misma.
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         public static  Gimnasio operator +(Gimnasio g, EClases e)
         {
             if (!Object.ReferenceEquals(g, null))
@@ -213,7 +264,12 @@ namespace EntidadesInstanciables
             }
             return null;
         }
-
+        /// <summary>
+        /// Agrega un instructor al gimnasio.
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="i"></param>
+        /// <returns></returns>
         public static  Gimnasio operator +(Gimnasio g, Instructor i)
         {
             if (g == i)
@@ -222,7 +278,10 @@ namespace EntidadesInstanciables
             g._instructores.Add(i);
             return g;
         }
-
+        /// <summary>
+        /// Hace publicos los datos el gimnasio.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return this.MostrarDatos(this);
@@ -231,6 +290,11 @@ namespace EntidadesInstanciables
         #endregion
 
         #region Metodos
+        /// <summary>
+        /// Devuelve una cadena que contiene todos los datos del gimnasio.
+        /// </summary>
+        /// <param name="gim"></param>
+        /// <returns></returns>
         private string MostrarDatos(Gimnasio gim)
         {
             StringBuilder str = new StringBuilder();
@@ -242,30 +306,34 @@ namespace EntidadesInstanciables
 
             return str.ToString(); 
         }
-
+        /// <summary>
+        /// Guarda el gimnasio pasado por parametro en un archivo xml.
+        /// </summary>
+        /// <param name="gim"></param>
+        /// <returns></returns>
         public static bool Guardar(Gimnasio gim)
         {
-            Xml<Gimnasio> xml = new Xml<Gimnasio>();
-            if (xml.guardar("Gimnasio.xml", gim))
-            {
+            string archivo = "gimnasio.xml";
 
-                return true;
-            }
+            Xml<Gimnasio> serializador = new Xml<Gimnasio>();
+            serializador.guardar(archivo, gim);
 
-            return false;
+            return true;
         }
-
-        public static bool Leer(Gimnasio gim)
+        /// <summary>
+        /// Lee el gimnasio pasador por parametro de un xml.
+        /// </summary>
+        /// <param name="gim"></param>
+        /// <returns></returns>
+        public static Gimnasio Leer()
         {
-            Xml<Gimnasio> xml = new Xml<Gimnasio>();
-            Gimnasio aux;
-            if (xml.leer("Gimnasio.xml", out aux))
-            {
-                Console.WriteLine(aux.ToString());
-                return true;
-            }
+            Gimnasio auxGimnasio = null;
+            string archivo = "gimnasio.xml";
 
-            return false;
+            Xml<Gimnasio> deserializador = new Xml<Gimnasio>();
+            deserializador.leer(archivo, out auxGimnasio);
+
+            return auxGimnasio;
         }
         #endregion
 

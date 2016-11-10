@@ -18,7 +18,7 @@ namespace EntidadesAbstractas
         private ENacionalidad _nacionalidad;
         private string _nombre;
 
-        //Falta incorporar Excepciones
+
         #region Constructores
         public Persona()
         { }
@@ -43,8 +43,11 @@ namespace EntidadesAbstractas
         }
 
         #endregion
-       
+
         #region Propiedades
+        /// <summary>
+        /// Propiedad GET & SET de apellido.
+        /// </summary>
         public string Apellido
         {
             get
@@ -57,7 +60,9 @@ namespace EntidadesAbstractas
                 _apellido = this.ValidarNombre(value);
             }
         }
-
+        /// <summary>
+        /// Propiedad GET & SET de nombre.
+        /// </summary>
         public string Nombre
         {
             get
@@ -70,7 +75,9 @@ namespace EntidadesAbstractas
                 _nombre = this.ValidarNombre(value);
             }
         }
-
+        /// <summary>
+        /// Propiedad GET & SET de dni que valida el DNI.
+        /// </summary>
         public int DNI
         {
             get
@@ -83,7 +90,9 @@ namespace EntidadesAbstractas
                 _dni = this.ValidarDni(this._nacionalidad, value);
             }
         }
-
+        /// <summary>
+        /// Propiedad SET de dni que valida la cadena.
+        /// </summary>
         public string StringToDNI
         {
             set
@@ -91,7 +100,9 @@ namespace EntidadesAbstractas
                 _dni = this.ValidarDni(this.Nacionalidad, value);              
             }
         }
-
+        /// <summary>
+        /// Propiedad GET & SET de Nacionalidad.
+        /// </summary>
         public ENacionalidad Nacionalidad
         {
             get
@@ -107,8 +118,12 @@ namespace EntidadesAbstractas
         }
 
         #endregion
-    
+
         #region Metodos
+        /// <summary>
+        /// Hace publicos los datos de la persona.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             StringBuilder str = new StringBuilder();
@@ -118,7 +133,12 @@ namespace EntidadesAbstractas
 
             return str.ToString();
         }
-
+        /// <summary>
+        /// Valida que la nacionalidad se corresponada con el DNI.
+        /// </summary>
+        /// <param name="nacionalidad"></param>
+        /// <param name="dato"></param>
+        /// <returns></returns>
         private int ValidarDni(ENacionalidad nacionalidad, int dato)
         {
                 switch (nacionalidad)

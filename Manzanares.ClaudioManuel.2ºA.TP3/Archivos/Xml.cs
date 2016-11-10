@@ -19,15 +19,17 @@ namespace Archivos
         /// <returns>TRUE si serializo correctamente, FALSE  si no lo hizo.</returns>
         public bool guardar(string archivo, T datos)
         {
+            XmlSerializer serializador;
+            XmlTextWriter escritor;
+
             try
             {
-                using (XmlTextWriter escritor = new XmlTextWriter(archivo, Encoding.UTF8))
-                {
-                    XmlSerializer ser = new XmlSerializer(typeof(T));
-                    ser.Serialize(escritor, datos);
-                    escritor.Close();
-                    return true;
-                }
+                serializador = new XmlSerializer(typeof(T));
+                escritor = new XmlTextWriter(archivo, Encoding.UTF8);
+                serializador.Serialize(escritor, datos);
+                escritor.Close();
+
+                return true;
             }
             catch (Exception e)
             {
@@ -43,15 +45,18 @@ namespace Archivos
         /// <returns>TRUE si la lectura fue correcta, FALSE si no lo fue.</returns>
         public bool leer(string archivo, out T datos)
         {
+            XmlSerializer serializador;
+            XmlTextReader lector;
+
             try
             {
-                using (XmlTextReader lector = new XmlTextReader(archivo))
-                {
-                    XmlSerializer ser = new XmlSerializer(typeof(T));
-                    datos = (T)ser.Deserialize(lector);
-                    lector.Close();
-                    return true;
-                }
+                serializador = new XmlSerializer(typeof(T));
+                lector = new XmlTextReader(archivo);
+
+                datos = (T)serializador.Deserialize(lector);
+                lector.Close();
+
+                return true;
             }
             catch (Exception e)
             {

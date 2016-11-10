@@ -45,17 +45,40 @@ namespace EntidadesInstanciables
         #endregion
 
         #region Sobrecargas
-
+        /// <summary>
+        /// Verifica que alumno no este en la jornada.
+        /// </summary>
+        /// <param name="j"></param>
+        /// <param name="a"></param>
+        /// <returns></returns>
         public static bool operator !=(Jornada j,Alumno a)
         {
             return !(j==a);
         }
-
+        /// <summary>
+        /// Verifica que alumno este en la jornada.
+        /// </summary>
+        /// <param name="j"></param>
+        /// <param name="a"></param>
+        /// <returns></returns>
         public static bool operator ==(Jornada j, Alumno a)
         {
-            return !(a != j._clase);
-        }
+            foreach (Alumno item in j._alumno)
+            {
+                if (j._alumno.Contains(a))
+                {
+                    return true;
+                }
+            }
 
+            return false;
+        }
+        /// <summary>
+        /// Agrega un alumno a la jornada.
+        /// </summary>
+        /// <param name="j"></param>
+        /// <param name="a"></param>
+        /// <returns></returns>
         public static Jornada operator +(Jornada j, Alumno a)
         {
             bool repetido = false;
@@ -73,7 +96,10 @@ namespace EntidadesInstanciables
           
             return j;
         }
-
+        /// <summary>
+        /// Hace publicos los datos de la jornada.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             StringBuilder str = new StringBuilder();
@@ -94,23 +120,16 @@ namespace EntidadesInstanciables
         #endregion
 
         #region Metodos
+        /// <summary>
+        /// Guarda la Jornada pasada como parametro en la ruta especificada.
+        /// </summary>
+        /// <param name="jornada"></param>
+        /// <returns></returns>
         public static bool Guardar(Jornada jornada)
         {
             Texto text = new Texto();
             if (text.guardar("Jornada.txt", jornada.ToString()))
             {
-                return true;
-            }
-            return false;
-        }
-
-        public static bool Leer(Jornada jornada)
-        {
-            Texto text = new Texto();
-            string datos;
-            if (text.leer("Jornada.txt", out datos))
-            {
-                Console.WriteLine(datos);
                 return true;
             }
             return false;

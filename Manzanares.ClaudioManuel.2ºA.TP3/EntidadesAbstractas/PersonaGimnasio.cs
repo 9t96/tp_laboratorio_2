@@ -53,6 +53,10 @@ namespace EntidadesAbstractas
         #endregion
 
         #region Metodos
+        /// <summary>
+        /// Retorna una cadena con los datos de la PersonaGimnasio.
+        /// </summary>
+        /// <returns></returns>
         protected virtual string MostrarDatos()
         {
             StringBuilder str = new StringBuilder();
@@ -62,7 +66,7 @@ namespace EntidadesAbstractas
 
             return str.ToString();
         }
-
+        
         protected abstract string ParticiparEnClase();
 
         #endregion

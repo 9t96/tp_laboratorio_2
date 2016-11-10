@@ -46,7 +46,7 @@ namespace EntidadesInstanciables
 
         #region Sobrecargas
         /// <summary>
-        /// 
+        /// Hace publicos los datos del instructor.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -84,6 +84,10 @@ namespace EntidadesInstanciables
         #endregion
 
         #region Metodos
+        /// <summary>
+        /// Retorna uan cadena con las clases que el instructor dicta en el dia.
+        /// </summary>
+        /// <returns></returns>
         protected override string ParticiparEnClase()
         {
             StringBuilder str = new StringBuilder();
@@ -96,7 +100,10 @@ namespace EntidadesInstanciables
 
             return str.ToString();
         }
-
+        /// <summary>
+        /// Retorna una cadena con los datos de la jornada.
+        /// </summary>
+        /// <returns></returns>
         protected override string MostrarDatos()
         {
             StringBuilder str = new StringBuilder();
@@ -106,7 +113,9 @@ namespace EntidadesInstanciables
 
             return str.ToString();
         }
-
+        /// <summary>
+        /// Asigna dos clase al azar al instructor.
+        /// </summary>
         private void _randomClase()
         {
             for (int i = 0 ; i < 2; i++)
